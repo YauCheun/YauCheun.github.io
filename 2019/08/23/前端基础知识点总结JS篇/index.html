@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript 前端,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YauCheun's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系 e.getAttribute()，是标准DOM操作文档元素属性的方法，具有通用性可在任意文档上使用，返回元素在源文件中设置的属性  e.propName通常是在HTML文档中访问特定元素的特性，浏览器解析元素后生成对应对象（如a标签生成HTMLAnchorElement），这些对象的特性会根据特定">
+<meta name="keywords" content="JavaScript 前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础知识点总结JS篇">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/前端基础知识点总结JS篇/index.html">
+<meta property="og:site_name" content="YauCheun&#39;s Blog">
+<meta property="og:description" content="DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系 e.getAttribute()，是标准DOM操作文档元素属性的方法，具有通用性可在任意文档上使用，返回元素在源文件中设置的属性  e.propName通常是在HTML文档中访问特定元素的特性，浏览器解析元素后生成对应对象（如a标签生成HTMLAnchorElement），这些对象的特性会根据特定">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-31T03:47:37.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端基础知识点总结JS篇">
+<meta name="twitter:description" content="DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系 e.getAttribute()，是标准DOM操作文档元素属性的方法，具有通用性可在任意文档上使用，返回元素在源文件中设置的属性  e.propName通常是在HTML文档中访问特定元素的特性，浏览器解析元素后生成对应对象（如a标签生成HTMLAnchorElement），这些对象的特性会根据特定">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/23/前端基础知识点总结JS篇/">
+
+
+
+
+
+  <title>前端基础知识点总结JS篇 | YauCheun's Blog</title>
+  
+
+
+
+
+
+
+
+
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+  
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YauCheun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts, stories and ideas</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/前端基础知识点总结JS篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YauCheun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://tva2.sinaimg.cn/crop.0.0.768.768.1024/6cc1c2cfjw8eh3kv8yvs9j20lc0lcdgl.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YauCheun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端基础知识点总结JS篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T11:54:01+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="DOM元素e的e-getAttribute-propName-和e-propName有什么区别和联系"><a href="#DOM元素e的e-getAttribute-propName-和e-propName有什么区别和联系" class="headerlink" title="DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系"></a>DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系</h3><ul>
+<li><p>e.getAttribute()，是标准DOM操作文档元素属性的方法，具有通用性可在任意文档上使用，返回元素在源文件中<strong>设置的属性</strong></p>
+</li>
+<li><p>e.propName通常是在HTML文档中访问特定元素的<strong>特性</strong>，浏览器解析元素后生成对应对象（如a标签生成HTMLAnchorElement），这些对象的特性会根据特定规则结合属性设置得到，对于没有对应特性的属性，只能使用getAttribute进行访问</p>
+<a id="more"></a>
+</li>
+<li><p>e.getAttribute()返回值是源文件中设置的值，类型是字符串或者null（有的实现返回””）</p>
+</li>
+<li><p>e.propName返回值可能是字符串、布尔值、对象、undefined等</p>
+</li>
+<li><p>大部分attribute与property是一一对应关系，修改其中一个会影响另一个，如id，title等属性</p>
+</li>
+<li><p>一些布尔属性<code>&lt;input hidden/&gt;</code>的检测设置需要hasAttribute和removeAttribute来完成，或者设置对应property</p>
+</li>
+<li><p>像<code>&lt;a href=&quot;../index.html&quot;&gt;link&lt;/a&gt;</code>中href属性，转换成property的时候需要通过转换得到完整URL</p>
+</li>
+<li><p>一些attribute和property不是一一对应如：form控件中<code>&lt;input value=&quot;hello&quot;/&gt;</code>对应的是defaultValue，修改或设置value property修改的是控件当前值，setAttribute修改value属性不会改变value property</p>
+</li>
+</ul>
+<h3 id="offsetWidth-offsetHeight-clientWidth-clientHeight与scrollWidth-scrollHeight的区别"><a href="#offsetWidth-offsetHeight-clientWidth-clientHeight与scrollWidth-scrollHeight的区别" class="headerlink" title="offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别"></a>offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别</h3><ul>
+<li>offsetWidth/offsetHeight返回值包含<strong>content + padding + border</strong>，效果与e.getBoundingClientRect()相同</li>
+<li>clientWidth/clientHeight返回值只包含<strong>content + padding</strong>，如果有滚动条，也<strong>不包含滚动条</strong></li>
+<li>scrollWidth/scrollHeight返回值包含<strong>content + padding + 溢出内容的尺寸</strong></li>
+</ul>
+<h3 id="XMLHttpRequest通用属性和方法"><a href="#XMLHttpRequest通用属性和方法" class="headerlink" title="XMLHttpRequest通用属性和方法"></a>XMLHttpRequest通用属性和方法</h3><ol>
+<li><code>readyState</code>:表示请求状态的整数，取值：<ul>
+<li>UNSENT（0）：对象已创建</li>
+<li>OPENED（1）：open()成功调用，在这个状态下，可以为xhr设置请求头，或者使用send()发送请求</li>
+<li>HEADERS_RECEIVED(2)：所有重定向已经自动完成访问，并且最终响应的HTTP头已经收到</li>
+<li>LOADING(3)：响应体正在接收</li>
+<li>DONE(4)：数据传输完成或者传输产生错误</li>
+</ul>
+</li>
+<li><code>onreadystatechange</code>：readyState改变时调用的函数</li>
+<li><code>status</code>：服务器返回的HTTP状态码（如，200， 404）</li>
+<li><code>statusText</code>:服务器返回的HTTP状态信息（如，OK，No Content）</li>
+<li><code>responseText</code>:作为字符串形式的来自服务器的完整响应</li>
+<li><code>responseXML</code>: Document对象，表示服务器的响应解析成的XML文档</li>
+<li><code>abort()</code>:取消异步HTTP请求</li>
+<li><code>getAllResponseHeaders()</code>: 返回一个字符串，包含响应中服务器发送的全部HTTP报头。每个报头都是一个用冒号分隔开的名/值对，并且使用一个回车/换行来分隔报头行</li>
+<li><code>getResponseHeader(headerName)</code>:返回headName对应的报头值</li>
+<li><code>open(method, url, asynchronous [, user, password])</code>:初始化准备发送到服务器上的请求。method是HTTP方法，不区分大小写；url是请求发送的相对或绝对URL；asynchronous表示请求是否异步；user和password提供身份验证</li>
+<li><code>setRequestHeader(name, value)</code>:设置HTTP报头</li>
+<li><code>send(body)</code>:对服务器请求进行初始化。参数body包含请求的主体部分，对于POST请求为键值对字符串；对于GET请求，为null</li>
+</ol>
+<h3 id="focus-blur与focusin-focusout的区别与联系"><a href="#focus-blur与focusin-focusout的区别与联系" class="headerlink" title="focus/blur与focusin/focusout的区别与联系"></a>focus/blur与focusin/focusout的区别与联系</h3><ol>
+<li>focus/blur不冒泡，focusin/focusout冒泡</li>
+<li>focus/blur兼容性好，focusin/focusout在除FireFox外的浏览器下都保持良好兼容性，如需使用事件托管，可考虑在FireFox下使用事件捕获elem.addEventListener(‘focus’, handler, true)</li>
+<li>可获得焦点的元素：<ol>
+<li>window</li>
+<li>链接被点击或键盘操作</li>
+<li>表单空间被点击或键盘操作</li>
+<li>设置<code>tabindex</code>属性的元素被点击或键盘操作</li>
+</ol>
+</li>
+</ol>
+<h3 id="mouseover-mouseout与mouseenter-mouseleave的区别与联系"><a href="#mouseover-mouseout与mouseenter-mouseleave的区别与联系" class="headerlink" title="mouseover/mouseout与mouseenter/mouseleave的区别与联系"></a>mouseover/mouseout与mouseenter/mouseleave的区别与联系</h3><ol>
+<li>mouseover/mouseout是标准事件，<strong>所有浏览器都支持</strong>；mouseenter/mouseleave是IE5.5引入的特有事件后来被DOM3标准采纳，现代标准浏览器也支持</li>
+<li>mouseover/mouseout是<strong>冒泡</strong>事件；mouseenter/mouseleave<strong>不冒泡</strong>。需要为<strong>多个元素监听鼠标移入/出事件时，推荐mouseover/mouseout托管，提高性能</strong></li>
+<li>标准事件模型中event.target表示发生移入/出的元素,<strong>vent.relatedTarget</strong>对应移出/如元素；在老IE中event.srcElement表示发生移入/出的元素，<strong>event.toElement</strong>表示移出的目标元素，<strong>event.fromElement</strong>表示移入时的来源元素</li>
+</ol>
+<p>例子：鼠标从div#target元素移出时进行处理，判断逻辑如下：</p>
+<pre><code>&lt;div id=&quot;target&quot;&gt;&lt;span&gt;test&lt;/span&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var target = document.getElementById(&apos;target&apos;);
+if (target.addEventListener) {
+  target.addEventListener(&apos;mouseout&apos;, mouseoutHandler, false);
+} else if (target.attachEvent) {
+  target.attachEvent(&apos;onmouseout&apos;, mouseoutHandler);
+}
+
+function mouseoutHandler(e) {
+  e = e || window.event;
+  var target = e.target || e.srcElement;
+
+  // 判断移出鼠标的元素是否为目标元素
+  if (target.id !== &apos;target&apos;) {
+    return;
+  }
+
+  // 判断鼠标是移出元素还是移到子元素
+  var relatedTarget = event.relatedTarget || e.toElement;
+  while (relatedTarget !== target
+    &amp;&amp; relatedTarget.nodeName.toUpperCase() !== &apos;BODY&apos;) {
+    relatedTarget = relatedTarget.parentNode;
+  }
+
+  // 如果相等，说明鼠标在元素内部移动
+  if (relatedTarget === target) {
+    return;
+  }
+
+  // 执行需要操作
+  //alert(&apos;鼠标移出&apos;);
+
+}
+&lt;/script&gt;</code></pre><h3 id="sessionStorage-localStorage-cookie区别"><a href="#sessionStorage-localStorage-cookie区别" class="headerlink" title="sessionStorage,localStorage,cookie区别"></a>sessionStorage,localStorage,cookie区别</h3><ol>
+<li>都会在浏览器端保存，有大小限制，同源限制</li>
+<li>cookie会在请求时发送到服务器，作为会话标识，服务器可修改cookie；web storage不会发送到服务器</li>
+<li>cookie有path概念，子路径可以访问父路径cookie，父路径不能访问子路径cookie</li>
+<li>有效期：cookie在设置的有效期内有效，默认为浏览器关闭；sessionStorage在窗口关闭前有效，localStorage长期有效，直到用户删除</li>
+<li>共享：sessionStorage不能共享，localStorage在同源文档之间共享，cookie在同源且符合path规则的文档之间共享</li>
+<li>localStorage的修改会促发其他文档窗口的update事件</li>
+<li>cookie有secure属性要求HTTPS传输</li>
+<li>浏览器不能保存超过300个cookie，单个服务器不能超过20个，每个cookie不能超过4k。web storage大小支持能达到5M</li>
+</ol>
+<h3 id="javascript跨域通信"><a href="#javascript跨域通信" class="headerlink" title="javascript跨域通信"></a>javascript跨域通信</h3><p>同源：两个文档同源需满足</p>
+<ol>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ol>
+<p>跨域通信：js进行DOM操作、通信时如果目标与当前窗口不满足同源条件，浏览器为了安全会阻止跨域操作。跨域通信通常有以下方法</p>
+<ul>
+<li>如果是log之类的简单<strong>单项通信</strong>，新建<code>&lt;img&gt;</code>,<code>&lt;script&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;iframe&gt;</code>元素，通过src，href属性设置为目标url。实现跨域请求</li>
+<li>如果请求<strong>json数据</strong>，使用<code>&lt;script&gt;</code>进行jsonp请求</li>
+<li>现代浏览器中<strong>多窗口通信</strong>使用HTML5规范的targetWindow.postMessage(data, origin);其中data是需要发送的对象，origin是目标窗口的origin。window.addEventListener(‘message’, handler, false);handler的event.data是postMessage发送来的数据，event.origin是发送窗口的origin，event.source是发送消息的窗口引用</li>
+<li>内部服务器代理请求跨域url，然后返回数据</li>
+<li>跨域请求数据，现代浏览器可使用HTML5规范的CORS功能，只要目标服务器返回HTTP头部<strong><code>Access-Control-Allow-Origin: *</code></strong>即可像普通ajax一样访问跨域资源</li>
+</ul>
+<h3 id="javascript有哪几种数据类型"><a href="#javascript有哪几种数据类型" class="headerlink" title="javascript有哪几种数据类型"></a>javascript有哪几种数据类型</h3><p>六种基本数据类型</p>
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>string</li>
+<li>boolean</li>
+<li>number</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Symbol" target="_blank" rel="noopener">symbol</a>(ES6)</li>
+</ul>
+<p>三种引用类型</p>
+<ul>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+</ul>
+<h3 id="什么闭包-闭包有什么用"><a href="#什么闭包-闭包有什么用" class="headerlink" title="什么闭包,闭包有什么用"></a>什么闭包,闭包有什么用</h3><p><strong>闭包是在某个作用域内定义的函数，它可以访问这个作用域内的所有变量</strong>。闭包作用域链通常包括三个部分：</p>
+<ol>
+<li>函数本身作用域。</li>
+<li>闭包定义时的作用域。</li>
+<li>全局作用域。</li>
+</ol>
+<p>闭包常见用途：</p>
+<ol>
+<li>创建特权方法用于访问控制</li>
+<li>事件处理程序及回调</li>
+</ol>
+<h3 id="javascript有哪几种方法定义函数"><a href="#javascript有哪几种方法定义函数" class="headerlink" title="javascript有哪几种方法定义函数"></a>javascript有哪几种方法定义函数</h3><ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" target="_blank" rel="noopener">函数声明表达式</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function" target="_blank" rel="noopener">function操作符</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" rel="noopener">Function 构造函数</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/arrow_functions" target="_blank" rel="noopener">ES6:arrow function</a></li>
+</ol>
+<p>重要参考资料：<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope" target="_blank" rel="noopener">MDN:Functions_and_function_scope</a></p>
+<h3 id="应用程序存储和离线web应用"><a href="#应用程序存储和离线web应用" class="headerlink" title="应用程序存储和离线web应用"></a>应用程序存储和离线web应用</h3><p>HTML5新增应用程序缓存，允许web应用将应用程序自身保存到用户浏览器中，用户离线状态也能访问。<br>1.为html元素设置manifest属性:<code>&lt;html manifest=&quot;myapp.appcache&quot;&gt;</code>，其中后缀名只是一个约定，真正识别方式是通过<code>text/cache-manifest</code>作为MIME类型。所以需要配置服务器保证设置正确<br>2.manifest文件首行为<code>CACHE MANIFEST</code>，其余就是要缓存的URL列表，每个一行，相对路径都相对于manifest文件的url。注释以#开头<br>3.url分为三种类型：<code>CACHE</code>:为默认类型。<code>NETWORK</code>：表示资源从不缓存。 <code>FALLBACK</code>:每行包含两个url，第二个URL是指需要加载和存储在缓存中的资源， 第一个URL是一个前缀。任何匹配该前缀的URL都不会缓存，如果从网络中载入这样的URL失败的话，就会用第二个URL指定的缓存资源来替代。以下是一个文件例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"></span><br><span class="line">CACHE:</span><br><span class="line">myapp.html</span><br><span class="line">myapp.css</span><br><span class="line">myapp.js</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">videos/ offline_help.html</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">cgi/</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端存储localStorage和sessionStorage"><a href="#客户端存储localStorage和sessionStorage" class="headerlink" title="客户端存储localStorage和sessionStorage"></a>客户端存储localStorage和sessionStorage</h3><ul>
+<li>localStorage有效期为永久，sessionStorage有效期为顶层窗口关闭前</li>
+<li>同源文档可以读取并修改localStorage数据，sessionStorage只允许同一个窗口下的文档访问，如通过iframe引入的同源文档。</li>
+<li>Storage对象通常被当做普通javascript对象使用：<strong>通过设置属性来存取字符串值</strong>，也可以通过<strong>setItem(key, value)设置</strong>，<strong>getItem(key)读取</strong>，<strong>removeItem(key)删除</strong>，<strong>clear()删除所有数据</strong>，<strong>length表示已存储的数据项数目</strong>，<strong>key(index)返回对应索引的key</strong></li>
+</ul>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem('x', <span class="number">1</span>); <span class="comment">// storge x-&gt;1</span></span><br><span class="line">localStorage.getItem('x); <span class="comment">// return value of x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 枚举所有存储的键值对</span></span><br><span class="line">for (<span class="built_in">var</span> i = <span class="number">0</span>, len = localStorage.length; i &lt; len; ++i ) &#123;</span><br><span class="line">    <span class="built_in">var</span> name = localStorage.<span class="built_in">key</span>(i);</span><br><span class="line">    <span class="built_in">var</span> <span class="built_in">value</span> = localStorage.getItem(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">localStorage.removeItem('x'); <span class="comment">// remove x</span></span><br><span class="line">localStorage.clear();  <span class="comment">// remove all data</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="cookie及其操作"><a href="#cookie及其操作" class="headerlink" title="cookie及其操作"></a>cookie及其操作</h3><ul>
+<li>cookie是web浏览器存储的少量数据，最早设计为服务器端使用，作为HTTP协议的扩展实现。cookie数据会自动在浏览器和服务器之间传输。</li>
+<li>通过读写cookie检测是否支持</li>
+<li>cookie属性有<strong>名</strong>，<strong>值</strong>，<strong>max-age</strong>，<strong>path</strong>, <strong>domain</strong>，<strong>secure</strong>；</li>
+<li>cookie默认有效期为浏览器会话，一旦用户关闭浏览器，数据就丢失，通过设置<strong>max-age=seconds</strong>属性告诉浏览器cookie有效期</li>
+<li>cookie作用域通过<strong>文档源</strong>和<strong>文档路径</strong>来确定，通过<strong>path</strong>和<strong>domain</strong>进行配置，web页面同目录或子目录文档都可访问</li>
+<li>通过cookie保存数据的方法为：为document.cookie设置一个符合目标的字符串如下</li>
+<li>读取document.cookie获得’; ‘分隔的字符串，key=value,解析得到结果</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">'name=qiu; max-age=9999; path=/; domain=domain; secure'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">'name=aaa; path=/; domain=domain; secure'</span>;</span><br><span class="line"><span class="comment">// 要改变cookie的值，需要使用相同的名字、路径和域，新的值</span></span><br><span class="line"><span class="comment">// 来设置cookie，同样的方法可以用来改变有效期</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置max-age为0可以删除指定cookie</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取cookie，访问document.cookie返回键值对组成的字符串，</span></span><br><span class="line"><span class="comment">//不同键值对之间用'; '分隔。通过解析获得需要的值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="javascript有哪些方法定义对象"><a href="#javascript有哪些方法定义对象" class="headerlink" title="javascript有哪些方法定义对象"></a>javascript有哪些方法定义对象</h3><ol>
+<li>对象字面量： <code>var obj = {};</code></li>
+<li>构造函数： <code>var obj = new Object();</code></li>
+<li>Object.create(): <code>var obj = Object.create(Object.prototype);</code></li>
+</ol>
+<h3 id="运算符判断相等的流程是怎样的"><a href="#运算符判断相等的流程是怎样的" class="headerlink" title="===运算符判断相等的流程是怎样的"></a>===运算符判断相等的流程是怎样的</h3><ol>
+<li>如果两个值不是相同类型，它们不相等</li>
+<li>如果两个值都是null或者都是undefined，它们相等</li>
+<li>如果两个值都是布尔类型true或者都是false，它们相等</li>
+<li>如果其中有一个是<strong>NaN</strong>，它们不相等</li>
+<li>如果都是数值型并且数值相等，他们相等， -0等于0</li>
+<li>如果他们都是字符串并且在相同位置包含相同的16位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同==和===都认为他们不相等</li>
+<li>如果他们指向相同对象、数组、函数，它们相等；如果指向不同对象，他们不相等</li>
+</ol>
+<h3 id="运算符判断相等的流程是怎样的-1"><a href="#运算符判断相等的流程是怎样的-1" class="headerlink" title="==运算符判断相等的流程是怎样的"></a>==运算符判断相等的流程是怎样的</h3><ol>
+<li>如果两个值类型相同，按照===比较方法进行比较</li>
+<li>如果类型不同，使用如下规则进行比较<ol>
+<li>如果其中一个值是null，另一个是undefined，它们相等</li>
+<li>如果一个值是<strong>数字</strong>另一个是<strong>字符串</strong>，将<strong>字符串转换为数字</strong>进行比较</li>
+<li>如果有布尔类型，将<strong>true转换为1，false转换为0</strong>，然后用==规则继续比较</li>
+<li>如果一个值是对象，另一个是数字或字符串，将对象转换为原始值然后用==规则继续比较</li>
+<li><strong>其他所有情况都认为不相等</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="对象到字符串的转换步骤"><a href="#对象到字符串的转换步骤" class="headerlink" title="对象到字符串的转换步骤"></a>对象到字符串的转换步骤</h3><ol>
+<li>如果对象有toString()方法，javascript调用它。如果返回一个原始值（primitive value如：string number boolean）,将这个值转换为字符串作为结果</li>
+<li>如果对象没有toString()方法或者返回值不是原始值，javascript寻找对象的valueOf()方法，如果存在就调用它，返回结果是原始值则转为字符串作为结果</li>
+<li>否则，javascript不能从toString()或者valueOf()获得一个原始值，此时throws a TypeError</li>
+</ol>
+<h3 id="对象到数字的转换步骤"><a href="#对象到数字的转换步骤" class="headerlink" title="对象到数字的转换步骤"></a>对象到数字的转换步骤</h3><pre><code>1. 如果对象有valueOf()方法并且返回元素值，javascript将返回值转换为数字作为结果
+2. 否则，如果对象有toString()并且返回原始值，javascript将返回结果转换为数字作为结果
+3. 否则，throws a TypeError</code></pre><h3 id="lt-gt-lt-gt-的比较规则"><a href="#lt-gt-lt-gt-的比较规则" class="headerlink" title="&lt;,&gt;,&lt;=,&gt;=的比较规则"></a>&lt;,&gt;,&lt;=,&gt;=的比较规则</h3><p>所有比较运算符都支持任意类型，但是<strong>比较只支持数字和字符串</strong>，所以需要执行必要的转换然后进行比较，转换规则如下:</p>
+<ol>
+<li>如果操作数是对象，转换为原始值：如果valueOf方法返回原始值，则使用这个值，否则使用toString方法的结果，如果转换失败则报错</li>
+<li>经过必要的对象到原始值的转换后，如果两个操作数都是字符串，按照字母顺序进行比较（他们的16位unicode值的大小）</li>
+<li>否则，如果有一个操作数不是字符串，<strong>将两个操作数转换为数字</strong>进行比较</li>
+</ol>
+<h3 id="运算符工作流程"><a href="#运算符工作流程" class="headerlink" title="+运算符工作流程"></a>+运算符工作流程</h3><ol>
+<li>如果有操作数是对象，转换为原始值</li>
+<li>此时如果有<strong>一个操作数是字符串</strong>，其他的操作数都转换为字符串并执行连接</li>
+<li>否则：<strong>所有操作数都转换为数字并执行加法</strong></li>
+</ol>
+<h3 id="函数内部arguments变量有哪些特性-有哪些属性-如何将它转换为数组"><a href="#函数内部arguments变量有哪些特性-有哪些属性-如何将它转换为数组" class="headerlink" title="函数内部arguments变量有哪些特性,有哪些属性,如何将它转换为数组"></a>函数内部arguments变量有哪些特性,有哪些属性,如何将它转换为数组</h3><ul>
+<li>arguments所有函数中都包含的一个局部变量，是一个类数组对象，对应函数调用时的实参。如果函数定义同名参数会在调用时覆盖默认对象</li>
+<li>arguments[index]分别对应函数调用时的实参，并且通过arguments修改实参时会同时修改实参</li>
+<li>arguments.length为实参的个数（Function.length表示形参长度）</li>
+<li>arguments.callee为当前正在执行的函数本身，使用这个属性进行递归调用时需注意this的变化</li>
+<li>arguments.caller为调用当前函数的函数（已被遗弃）</li>
+<li>转换为数组：<code>var args = Array.prototype.slice.call(arguments, 0);</code></li>
+</ul>
+<h3 id="DOM事件模型是如何的-编写一个EventUtil工具类实现事件管理兼容"><a href="#DOM事件模型是如何的-编写一个EventUtil工具类实现事件管理兼容" class="headerlink" title="DOM事件模型是如何的,编写一个EventUtil工具类实现事件管理兼容"></a>DOM事件模型是如何的,编写一个EventUtil工具类实现事件管理兼容</h3><ul>
+<li>DOM事件包含捕获（capture）和冒泡（bubble）两个阶段：捕获阶段事件从window开始触发事件然后通过祖先节点一次传递到触发事件的DOM元素上；冒泡阶段事件从初始元素依次向祖先节点传递直到window</li>
+<li>标准事件监听elem.addEventListener(type, handler, capture)/elem.removeEventListener(type, handler, capture)：handler接收保存事件信息的event对象作为参数，event.target为触发事件的对象，handler调用上下文this为绑定监听器的对象，event.preventDefault()取消事件默认行为，event.stopPropagation()/event.stopImmediatePropagation()取消事件传递</li>
+<li>老版本IE事件监听elem.attachEvent(‘on’+type, handler)/elem.detachEvent(‘on’+type, handler)：handler不接收event作为参数，事件信息保存在window.event中，触发事件的对象为event.srcElement，handler执行上下文this为window使用闭包中调用handler.call(elem, event)可模仿标准模型，然后返回闭包，保证了监听器的移除。event.returnValue为false时取消事件默认行为，event.cancleBubble为true时取消时间传播</li>
+<li>通常利用事件冒泡机制托管事件处理程序提高程序性能。</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 跨浏览器事件处理工具。只支持冒泡。不支持捕获</span></span><br><span class="line"><span class="comment"> * @author  (qiu_deqing@126.com)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> EventUtil = &#123;</span><br><span class="line">    getEvent: <span class="keyword">function</span> (<span class="keyword">event</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">event</span> || window<span class="variable">.event</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    getTarget: <span class="keyword">function</span> (<span class="keyword">event</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">event</span><span class="variable">.target</span> || <span class="keyword">event</span><span class="variable">.srcElement</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 返回注册成功的监听器，IE中需要使用返回值来移除监听器</span></span><br><span class="line">    on: <span class="keyword">function</span> (elem, <span class="keyword">type</span>, handler) &#123;</span><br><span class="line">        <span class="keyword">if</span> (elem<span class="variable">.addEventListener</span>) &#123;</span><br><span class="line">            elem<span class="variable">.addEventListener</span>(<span class="keyword">type</span>, handler, false);</span><br><span class="line">            <span class="keyword">return</span> handler;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (elem<span class="variable">.attachEvent</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> wrapper = <span class="keyword">function</span> () &#123;</span><br><span class="line">              <span class="keyword">var</span> <span class="keyword">event</span> = window<span class="variable">.event</span>;</span><br><span class="line">              <span class="keyword">event</span><span class="variable">.target</span> = <span class="keyword">event</span><span class="variable">.srcElement</span>;</span><br><span class="line">              handler<span class="variable">.call</span>(elem, <span class="keyword">event</span>);</span><br><span class="line">            &#125;;</span><br><span class="line">            elem<span class="variable">.attachEvent</span>('on' + <span class="keyword">type</span>, wrapper);</span><br><span class="line">            <span class="keyword">return</span> wrapper;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    off: <span class="keyword">function</span> (elem, <span class="keyword">type</span>, handler) &#123;</span><br><span class="line">        <span class="keyword">if</span> (elem<span class="variable">.removeEventListener</span>) &#123;</span><br><span class="line">            elem<span class="variable">.removeEventListener</span>(<span class="keyword">type</span>, handler, false);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (elem<span class="variable">.detachEvent</span>) &#123;</span><br><span class="line">            elem<span class="variable">.detachEvent</span>('on' + <span class="keyword">type</span>, handler);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    preventDefault: <span class="keyword">function</span> (<span class="keyword">event</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">event</span><span class="variable">.preventDefault</span>) &#123;</span><br><span class="line">            <span class="keyword">event</span><span class="variable">.preventDefault</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ('returnValue' in <span class="keyword">event</span>) &#123;</span><br><span class="line">            <span class="keyword">event</span><span class="variable">.returnValue</span> = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    stopPropagation: <span class="keyword">function</span> (<span class="keyword">event</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">event</span><span class="variable">.stopPropagation</span>) &#123;</span><br><span class="line">            <span class="keyword">event</span><span class="variable">.stopPropagation</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ('cancelBubble' in <span class="keyword">event</span>) &#123;</span><br><span class="line">            <span class="keyword">event</span><span class="variable">.cancelBubble</span> = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * keypress事件跨浏览器获取输入字符</span></span><br><span class="line"><span class="comment">     * 某些浏览器在一些特殊键上也触发keypress，此时返回null</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">     getChar: <span class="keyword">function</span> (<span class="keyword">event</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">event</span><span class="variable">.which</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> String<span class="variable">.fromCharCode</span>(<span class="keyword">event</span><span class="variable">.keyCode</span>);  <span class="comment">// IE</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">event</span><span class="variable">.which</span> != <span class="number">0</span> &amp;&amp; <span class="keyword">event</span><span class="variable">.charCode</span> != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> String<span class="variable">.fromCharCode</span>(<span class="keyword">event</span><span class="variable">.which</span>);    <span class="comment">// the rest</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;    <span class="comment">// special key</span></span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="评价一下三种方法实现继承的优缺点-并改进"><a href="#评价一下三种方法实现继承的优缺点-并改进" class="headerlink" title="评价一下三种方法实现继承的优缺点,并改进"></a>评价一下三种方法实现继承的优缺点,并改进</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rect</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法1</span></span><br><span class="line">Rect.prototype = <span class="keyword">new</span> Shape();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法2</span></span><br><span class="line">Rect.prototype = Shape.prototype;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法3</span></span><br><span class="line">Rect.prototype = <span class="built_in">Object</span>.create(Shape.prototype);</span><br><span class="line"></span><br><span class="line">Rect.prototype.area = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>方法1：</p>
+<ol>
+<li>优点：正确设置原型链实现继承</li>
+<li>优点：父类实例属性得到继承，原型链查找效率提高，也能为一些属性提供合理的默认值</li>
+<li>缺点：父类实例属性为引用类型时，不恰当地修改会导致所有子类被修改</li>
+<li>缺点：创建父类实例作为子类原型时，可能无法确定构造函数需要的合理参数，这样提供的参数继承给子类没有实际意义，当子类需要这些参数时应该在构造函数中进行初始化和设置</li>
+<li>总结：继承应该是继承方法而不是属性，为子类设置父类实例属性应该是通过在子类构造函数中调用父类构造函数进行初始化</li>
+</ol>
+<p>方法2：</p>
+<ol>
+<li>优点：正确设置原型链实现继承</li>
+<li>缺点：父类构造函数原型与子类相同。修改子类原型添加方法会修改父类</li>
+</ol>
+<p>方法3：</p>
+<ol>
+<li>优点：正确设置原型链且避免方法1.2中的缺点</li>
+<li>缺点：ES5方法需要注意兼容性</li>
+</ol>
+<p>改进：</p>
+<ol>
+<li>所有三种方法应该在子类构造函数中调用父类构造函数实现实例属性初始化</li>
+</ol>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Shape.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>用新创建的对象替代子类默认原型，设置<code>Rect.prototype.constructor = Rect;</code>保证一致性</li>
+<li>第三种方法的polyfill：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.create) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.create(obj);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    f.prototype = obj;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript-前端/" rel="tag"><i class="fa fa-tag"></i>  JavaScript 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/22/前端基础知识点总结CSS篇（问题实例）/" rel="next" title="前端基础知识点总结CSS篇（问题实例）">
+                <i class="fa fa-chevron-left"></i> 前端基础知识点总结CSS篇（问题实例）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/函数式编程/" rel="prev" title="JavaScript 函数式编程">
+                JavaScript 函数式编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://tva2.sinaimg.cn/crop.0.0.768.768.1024/6cc1c2cfjw8eh3kv8yvs9j20lc0lcdgl.jpg" alt="YauCheun">
+            
+              <p class="site-author-name" itemprop="name">YauCheun</p>
+              <p class="site-description motion-element" itemprop="description">YauCheun</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YauCheun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yaucheung@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/YauCheun" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM元素e的e-getAttribute-propName-和e-propName有什么区别和联系"><span class="nav-number">1.</span> <span class="nav-text">DOM元素e的e.getAttribute(propName)和e.propName有什么区别和联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetWidth-offsetHeight-clientWidth-clientHeight与scrollWidth-scrollHeight的区别"><span class="nav-number">2.</span> <span class="nav-text">offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest通用属性和方法"><span class="nav-number">3.</span> <span class="nav-text">XMLHttpRequest通用属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#focus-blur与focusin-focusout的区别与联系"><span class="nav-number">4.</span> <span class="nav-text">focus/blur与focusin/focusout的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mouseover-mouseout与mouseenter-mouseleave的区别与联系"><span class="nav-number">5.</span> <span class="nav-text">mouseover/mouseout与mouseenter/mouseleave的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionStorage-localStorage-cookie区别"><span class="nav-number">6.</span> <span class="nav-text">sessionStorage,localStorage,cookie区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript跨域通信"><span class="nav-number">7.</span> <span class="nav-text">javascript跨域通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript有哪几种数据类型"><span class="nav-number">8.</span> <span class="nav-text">javascript有哪几种数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么闭包-闭包有什么用"><span class="nav-number">9.</span> <span class="nav-text">什么闭包,闭包有什么用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript有哪几种方法定义函数"><span class="nav-number">10.</span> <span class="nav-text">javascript有哪几种方法定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序存储和离线web应用"><span class="nav-number">11.</span> <span class="nav-text">应用程序存储和离线web应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端存储localStorage和sessionStorage"><span class="nav-number">12.</span> <span class="nav-text">客户端存储localStorage和sessionStorage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie及其操作"><span class="nav-number">13.</span> <span class="nav-text">cookie及其操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript有哪些方法定义对象"><span class="nav-number">14.</span> <span class="nav-text">javascript有哪些方法定义对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符判断相等的流程是怎样的"><span class="nav-number">15.</span> <span class="nav-text">===运算符判断相等的流程是怎样的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符判断相等的流程是怎样的-1"><span class="nav-number">16.</span> <span class="nav-text">==运算符判断相等的流程是怎样的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象到字符串的转换步骤"><span class="nav-number">17.</span> <span class="nav-text">对象到字符串的转换步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象到数字的转换步骤"><span class="nav-number">18.</span> <span class="nav-text">对象到数字的转换步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-gt-lt-gt-的比较规则"><span class="nav-number">19.</span> <span class="nav-text">&lt;,&gt;,&lt;=,&gt;=的比较规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符工作流程"><span class="nav-number">20.</span> <span class="nav-text">+运算符工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数内部arguments变量有哪些特性-有哪些属性-如何将它转换为数组"><span class="nav-number">21.</span> <span class="nav-text">函数内部arguments变量有哪些特性,有哪些属性,如何将它转换为数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM事件模型是如何的-编写一个EventUtil工具类实现事件管理兼容"><span class="nav-number">22.</span> <span class="nav-text">DOM事件模型是如何的,编写一个EventUtil工具类实现事件管理兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价一下三种方法实现继承的优缺点-并改进"><span class="nav-number">23.</span> <span class="nav-text">评价一下三种方法实现继承的优缺点,并改进</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-[object Object]"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YauCheun</span>
+
+  
+</div>
+
+
+   <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span> 
+
+<i class="fa fa-eye"></i>
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+ 
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共25.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+</body>
+</html>

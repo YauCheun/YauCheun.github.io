@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSS 前端,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YauCheun's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器盒模型">
+<meta name="keywords" content="CSS 前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础知识点总结CSS篇（基础回顾））">
+<meta property="og:url" content="http://yoursite.com/2019/08/21/前端基础知识点总结CSS篇（基础回顾）/index.html">
+<meta property="og:site_name" content="YauCheun&#39;s Blog">
+<meta property="og:description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器盒模型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvMTI2NTM5Ni8yMDE3MTEvMTI2NTM5Ni0yMDE3MTExOTE0MzcwMzY1Ni0xMzMyODU3MzIxLnBuZw">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvMTI2NTM5Ni8yMDE3MTEvMTI2NTM5Ni0yMDE3MTExOTE0NDIyOTE1Ni00OTk0NTgwOC5wbmc">
+<meta property="og:updated_time" content="2019-08-30T14:39:00.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端基础知识点总结CSS篇（基础回顾））">
+<meta name="twitter:description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器盒模型">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvMTI2NTM5Ni8yMDE3MTEvMTI2NTM5Ni0yMDE3MTExOTE0MzcwMzY1Ni0xMzMyODU3MzIxLnBuZw">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/21/前端基础知识点总结CSS篇（基础回顾）/">
+
+
+
+
+
+  <title>前端基础知识点总结CSS篇（基础回顾）） | YauCheun's Blog</title>
+  
+
+
+
+
+
+
+
+
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+  
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YauCheun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts, stories and ideas</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/前端基础知识点总结CSS篇（基础回顾）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YauCheun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://tva2.sinaimg.cn/crop.0.0.768.768.1024/6cc1c2cfjw8eh3kv8yvs9j20lc0lcdgl.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YauCheun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端基础知识点总结CSS篇（基础回顾））</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T11:54:01+08:00">
+                2019-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><p>Cascading Style Sheet 层叠样式表</p>
+<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a><a href="https://blog.csdn.net/YauCheun/article/details/99928622" target="_blank" rel="noopener">CSS选择器</a></h3><h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><a id="more"></a>
+
+<p>盒模型有两种， IE 怪异盒子模型、W3C标准盒子模型；</p>
+<p>盒模型是由： 内容(content)、内边距(padding)、边框(border)、外边距(margin) 组成的。</p>
+<p>标准模型的宽高是指的content区宽高；<br>IE盒模型的宽高是指的content+padding+border的宽高。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvMTI2NTM5Ni8yMDE3MTEvMTI2NTM5Ni0yMDE3MTExOTE0MzcwMzY1Ni0xMzMyODU3MzIxLnBuZw" alt="在这里插入图片描述"><br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvMTI2NTM5Ni8yMDE3MTEvMTI2NTM5Ni0yMDE3MTExOTE0NDIyOTE1Ni00OTk0NTgwOC5wbmc" alt="在这里插入图片描述"></p>
+<h3 id="CSS如何设置这两种盒模型？"><a href="#CSS如何设置这两种盒模型？" class="headerlink" title="CSS如何设置这两种盒模型？"></a>CSS如何设置这两种盒模型？</h3><p>标准盒模型：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">box</span>-sizing: <span class="built_in">content</span>-<span class="built_in">box</span>;</span><br></pre></td></tr></table></figure>
+
+<p>怪异盒模型：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">box</span>-sizing: <span class="built_in">border</span>-<span class="built_in">box</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p><a href="https://www.jianshu.com/p/0d713b32cd0d" target="_blank" rel="noopener">什么是BFC</a></p>
+<p>W3C对BFC定义：</p>
+<blockquote>
+<p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。</p>
+</blockquote>
+<p>BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+<p>BFC作用：</p>
+<ol>
+<li>利用BFC避免外边距折叠</li>
+<li>清除内部浮动 （撑开高度）<ol>
+<li>原理: 触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内</li>
+</ol>
+</li>
+<li>避免文字环绕</li>
+<li>分属于不同的BFC时，可以阻止margin重叠</li>
+<li>多列布局中使用BFC</li>
+</ol>
+<p>如何生成BFC：（脱离文档流，满足下列的任意一个或多个条件即可）</p>
+<ol>
+<li>根元素，即HTML元素（最大的一个BFC）</li>
+<li>float的值不为none</li>
+<li>position的值为absolute或fixed</li>
+<li>overflow的值不为visible（默认值。内容不会被修剪，会呈现在元素框之外）</li>
+<li>display的值为inline-block、table-cell、table-caption</li>
+</ol>
+<p>BFC布局规则：</p>
+<ol>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>属于同一个BFC的两个相邻的Box的margin会发生重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此, 文字环绕效果，设置float</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>计算BFC的高度，浮动元素也参与计算</li>
+</ol>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><ul>
+<li>元素”浮动”</li>
+<li>脱离文档流</li>
+<li>不脱离文本流</li>
+<li>位置尽量靠上，并靠左或右</li>
+</ul>
+<p>对自己的影响</p>
+<ul>
+<li>形成”块”(BFC)</li>
+<li>这个块会负责自己的布局，宽高由自己决定</li>
+</ul>
+<p>比如 span 中用 float 这个span就形成了一个BFC，就可以设置宽高了</p>
+<p>对兄弟元素的影响</p>
+<ul>
+<li>上面一般贴非float元素</li>
+<li>靠边贴float元素或边</li>
+<li>不影响其他块级元素位置</li>
+<li>影响其他块级元素文本</li>
+</ul>
+<p>对父级元素的影响</p>
+<ul>
+<li>从布局上”消失”</li>
+<li>高度塌陷</li>
+</ul>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><p>浮动的元素布局时不会占据父元素的布局空间，即父元素布局时不会管浮动元素，浮动元素有可能超出父元素，从而对其他元素造成影响。</p>
+<p>方法一：使用带 clear 属性的空元素 在浮动元素后使用一个空元素如<div class="clear"></div>，并在 CSS 中赋 予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.news</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: gray;</span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> black;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clear</span> &#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"news"</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"news-pic.jpg"</span> /&gt;</span><br><span class="line">&lt;p&gt;some text&lt;/p&gt;</span><br><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"clear"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>优点：简单，代码少，浏览器兼容性好。<br>缺点：需要添加大量无语义的html元素，代码不够优雅，后期不容易维护。</p>
+<p>方法二： 使用 CSS 的 overflow 属性 给浮动元素的容器添加 overflow:hidden;或 overflow:auto;可以清除浮动，另外在 IE6 中 还需要触发 hasLayout ，例如为父元素设置容器宽高或设置 zoom:1。 在添加 overflow 属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动的 效果。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.news</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: gray;</span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> black;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  *zoom: 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&lt;div class="news"&gt;</span><br><span class="line">&lt;img src="news-pic.jpg" /&gt;</span><br><span class="line">&lt;p&gt;some text&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方法三：给浮动的元素的容器添加浮动 给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布 局，不推荐使用。</p>
+<p> 方法四：使用邻接元素处理 什么都不做，给浮动元素后面的元素添加 clear 属性。 </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.news</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: gray;</span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> black;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">.<span class="attribute">content</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"news"</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"news-pic.jpg"</span> /&gt;</span><br><span class="line">&lt;p&gt;some text&lt;/p&gt;</span><br><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"content"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方法五：使用 CSS 的:after 伪元素 结合 :after 伪元素（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）和 IEhack ，可以完美兼容当前主流的各大浏览器，这里的 IEhack 指的是触发 hasLayout。 给浮动元素的容器添加一个 clearfix 的 class，然后给这个 class 添加一个:after 伪元素 实现元素末尾添加一个看不见的块元素（Block element）清理浮动。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">.<span class="class">news </span>&#123;</span><br><span class="line">  background-color: gray;</span><br><span class="line"><span class="symbol">  border:</span> solid <span class="number">1</span>px black;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">.news <span class="class">img </span>&#123;</span><br><span class="line"><span class="symbol">  float:</span> left;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">.news <span class="class">p </span>&#123;</span><br><span class="line"><span class="symbol">  float:</span> right;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">.clearfix:after&#123;</span><br><span class="line"><span class="symbol">  content:</span> <span class="string">"020"</span>; </span><br><span class="line"><span class="symbol">  display:</span> block; </span><br><span class="line"><span class="symbol">  height:</span> <span class="number">0</span>; </span><br><span class="line"><span class="symbol">  clear:</span> both; </span><br><span class="line"><span class="symbol">  visibility:</span> hidden;  </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">.<span class="class">clearfix </span>&#123;</span><br><span class="line">  <span class="comment">/* 触发 hasLayout */</span> </span><br><span class="line"><span class="symbol">  zoom:</span> <span class="number">1</span>; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="params">&lt;div class="news clearfix"&gt;</span></span><br><span class="line"><span class="params">&lt;img src="news-pic.jpg" /&gt;</span></span><br><span class="line"><span class="params">&lt;p&gt;</span>some text<span class="params">&lt;/p&gt;</span></span><br><span class="line"><span class="params">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="inline-block的间隙"><a href="#inline-block的间隙" class="headerlink" title="inline-block的间隙"></a>inline-block的间隙</h3><p>两个并列的inline-block中间会有一条裂缝，这个的原因是两个标签之间有空格，浏览器把这些空格当成文字中空格，所以这两个块中间多少有间隙。</p>
+<p>解决办法：</p>
+<ol>
+<li>删除两个标签间的空格，但是这样html排版不好</li>
+<li>容器元素font-size: 0 然后再在里面再重新设置字体大小<h3 id="文字换行"><a href="#文字换行" class="headerlink" title="文字换行"></a>文字换行</h3></li>
+</ol>
+<ul>
+<li>overflow-wrap(word-wrap)通用换行控制<ul>
+<li>是否保留单词</li>
+</ul>
+</li>
+<li>word-break 针对多字节文本文字<ul>
+<li>中文句子也是单词</li>
+</ul>
+</li>
+<li>white-space 空白处是否换行</li>
+</ul>
+<h3 id="装饰属性及其他"><a href="#装饰属性及其他" class="headerlink" title="装饰属性及其他"></a>装饰属性及其他</h3><ul>
+<li>字重（粗体） font-weight</li>
+<li>斜体  font-style: itatic</li>
+<li>下划线   text-decoration</li>
+<li>指针  cursor<h3 id="单行文本溢出显示省略号"><a href="#单行文本溢出显示省略号" class="headerlink" title="单行文本溢出显示省略号"></a>单行文本溢出显示省略号</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line"><span class="selector-tag">text-overflow</span>: <span class="selector-tag">ellipsis</span>;</span><br><span class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">no-wrap</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="多行文本溢出显示省略号"><a href="#多行文本溢出显示省略号" class="headerlink" title="多行文本溢出显示省略号"></a>多行文本溢出显示省略号</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line"><span class="selector-tag">text-overflow</span>: <span class="selector-tag">ellipsis</span>;</span><br><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">-webkit-box</span>;</span><br><span class="line"><span class="selector-tag">-webkit-line-clamp</span>: 3;</span><br><span class="line"><span class="selector-tag">-webkit-box-orient</span>: <span class="selector-tag">vertical</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="display-none-与-visibility-hidden-的区别"><a href="#display-none-与-visibility-hidden-的区别" class="headerlink" title="display: none; 与 visibility: hidden; 的区别"></a>display: none; 与 visibility: hidden; 的区别</h3><p>相同： 它们都能让元素不可见</p>
+<p>区别：</p>
+<ul>
+<li>display:none;会让元素完全<strong>从渲染树中消失</strong>，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见</li>
+<li>display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；visibility:hidden;是继承属性，子孙节点消失由于继承了 hidden，通过设置 <strong>visibility: visible;可以让子孙节点显式</strong></li>
+<li>修改常规流中元素的 display 通常会造成文档<strong>重排</strong>。修改 visibility 属性只会造成本元素的重绘</li>
+<li>读屏器不会读取 display: none;元素内容；会读取 visibility: hidden 元素内容</li>
+<li>无论是 display:none; 还是 visibility: hidden; 他们都依然可以被 JS 所获取到</li>
+</ul>
+<h3 id="外边距折叠-collapsing-margins"><a href="#外边距折叠-collapsing-margins" class="headerlink" title="外边距折叠(collapsing margins)"></a>外边距折叠(collapsing margins)</h3><p>外边距重叠就是 margin-collapse</p>
+<p>相邻的两个盒子（可能是兄弟关系也可能是祖先关系）的外边距可以结合成一个单独的外边距。 这种合并外边距的方式被称为折叠，结合而成的外边距称为折叠外边距</p>
+<p>折叠结果遵循下列计算规则：</p>
+<ul>
+<li>两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值</li>
+<li>两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值</li>
+<li>两个外边距一正一负时，折叠结果是两者的相加的和</li>
+</ul>
+<p>新手在做导航栏的时候发现页面整体掉下来一截就是这个原因。</p>
+<h3 id="CSS单位"><a href="#CSS单位" class="headerlink" title="CSS单位"></a>CSS单位</h3><ol>
+<li><p>px  绝对单位。传统上一个像素对应于计算机屏幕上的一个点，而对于高清屏则对应更多。</p>
+</li>
+<li><p>%   父元素<strong>宽度</strong>的比例。</p>
+<ol>
+<li>如果对 html 元素设置 font-size 为百分比值，则是以浏览器默认的字体大小16px为参照计算的（所有浏览器的默认字体大小都为 16px），如62.5%即等于10px（62.5% * 16px = 10px）。</li>
+</ol>
+</li>
+<li><p>em  相对单位。 不同的属性有不同的参照值。</p>
+<ol>
+<li>对于字体大小属性（font-size）来说，em 的计算方式是相对于父元素的字体大小</li>
+<li>border, width, height, padding, margin, line-height）在这些属性中，使用em单位的计算方式是参照该元素的 font-size，1em 等于该元素设置的字体大小。同理如果该元素没有设置，则一直向父级元素查找，直到找到，如果都没有设置大小，则使用浏览器默认的字体大小。</li>
+</ol>
+</li>
+<li><p>rem 是相对于根元素 html 的 font-size 来计算的，所以其参照物是固定的。</p>
+<ol>
+<li>好处：rem 只需要修改 html 的 font-size 值即可达到全部的修改，即所谓的牵一发而动全身。</li>
+</ol>
+</li>
+<li><p>vw, vh, vmin, vmax   相对单位，是基于视窗大小（浏览器用来显示内容的区域大小）来计算的。</p>
+<ol>
+<li>vw：基于视窗的宽度计算，1vw 等于视窗宽度的百分之一</li>
+<li>vh：基于视窗的高度计算，1vh 等于视窗高度的百分之一</li>
+<li>vmin：基于vw和vh中的最小值来计算，1vmin 等于最小值的百分之一</li>
+<li>vmax：基于vw和vh中的最大值来计算，1vmax 等于最大值的百分之一</li>
+</ol>
+</li>
+</ol>
+<h3 id="transform变形"><a href="#transform变形" class="headerlink" title="transform变形"></a><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" target="_blank" rel="noopener">transform变形</a></h3><p>与transition、translate名字有点像，transition是做过渡动画的，而translate是用来做平移的。</p>
+<ul>
+<li>none    <ul>
+<li>定义不进行转换。</li>
+<li>matrix(n,n,n,n,n,n)</li>
+<li>定义 2D 转换，使用六个值的矩阵。</li>
+</ul>
+</li>
+<li>translate(x,y)<ul>
+<li>从其当前位置移动，根据给定的 left（x 坐标）和 top（y 坐标）</li>
+</ul>
+</li>
+<li>translate3d(x,y,z)<ul>
+<li>定义 3D 转换。</li>
+</ul>
+</li>
+<li>translateX(x)</li>
+<li>translateY(y)</li>
+<li>translateZ(z)</li>
+<li>scale(x[,y]?)<ul>
+<li>定义 2D 缩放转换。</li>
+<li>scale3d(x,y,z)</li>
+<li>定义 3D 缩放转换。</li>
+<li>scaleX(x)</li>
+<li>scaleY(y)</li>
+<li>scaleZ(z)</li>
+<li>rotate(angle)</li>
+<li>定义 2D 旋转，在参数中规定角度。</li>
+<li>rotate3d(x,y,z,angle)</li>
+<li>定义 3D 旋转。</li>
+<li>rotateX(angle)</li>
+<li>rotateY(angle)</li>
+<li>rotateZ(angle)</li>
+</ul>
+</li>
+<li>skew(x-angle,y-angle)<ul>
+<li>定义沿着 X 和 Y 轴的 2D 倾斜转换。</li>
+</ul>
+</li>
+<li>skewX(angle)</li>
+<li>skewY(angle)<ul>
+<li>perspective(n)</li>
+<li>为 3D 转换元素定义透视视图。</li>
+</ul>
+</li>
+</ul>
+<h3 id="CSS预处理器"><a href="#CSS预处理器" class="headerlink" title="CSS预处理器"></a>CSS预处理器</h3><ul>
+<li>嵌套           <ul>
+<li>反映层级和约束</li>
+</ul>
+</li>
+<li>变量和计算      <ul>
+<li>减少冗余代码</li>
+</ul>
+</li>
+<li>entend和mixin  <ul>
+<li>代码片段重用</li>
+<li>mixin是直接把CSS代码每个地方重复写一份</li>
+<li>extend是使用逗号分割的选择器来为多个不同的地方使用同一段CSS</li>
+</ul>
+</li>
+<li>循环          <ul>
+<li>适用于复杂有规律的样式</li>
+</ul>
+</li>
+<li>import        <ul>
+<li>CSS模块化</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS-前端/" rel="tag"><i class="fa fa-tag"></i>  CSS 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/21/CSS选择器及优先级权重/" rel="next" title="CSS选择器及优先级权重">
+                <i class="fa fa-chevron-left"></i> CSS选择器及优先级权重
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/22/前端基础知识点总结CSS篇（问题实例）/" rel="prev" title="前端基础知识点总结CSS篇（问题实例）">
+                前端基础知识点总结CSS篇（问题实例） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://tva2.sinaimg.cn/crop.0.0.768.768.1024/6cc1c2cfjw8eh3kv8yvs9j20lc0lcdgl.jpg" alt="YauCheun">
+            
+              <p class="site-author-name" itemprop="name">YauCheun</p>
+              <p class="site-description motion-element" itemprop="description">YauCheun</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YauCheun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yaucheung@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/YauCheun" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">1.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS选择器"><span class="nav-number">1.0.1.</span> <span class="nav-text">CSS选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型"><span class="nav-number">1.0.2.</span> <span class="nav-text">盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS如何设置这两种盒模型？"><span class="nav-number">1.0.3.</span> <span class="nav-text">CSS如何设置这两种盒模型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">1.0.4.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float"><span class="nav-number">1.0.5.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除浮动"><span class="nav-number">1.0.6.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inline-block的间隙"><span class="nav-number">1.0.7.</span> <span class="nav-text">inline-block的间隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字换行"><span class="nav-number">1.0.8.</span> <span class="nav-text">文字换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰属性及其他"><span class="nav-number">1.0.9.</span> <span class="nav-text">装饰属性及其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单行文本溢出显示省略号"><span class="nav-number">1.0.10.</span> <span class="nav-text">单行文本溢出显示省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多行文本溢出显示省略号"><span class="nav-number">1.0.11.</span> <span class="nav-text">多行文本溢出显示省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display-none-与-visibility-hidden-的区别"><span class="nav-number">1.0.12.</span> <span class="nav-text">display: none; 与 visibility: hidden; 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外边距折叠-collapsing-margins"><span class="nav-number">1.0.13.</span> <span class="nav-text">外边距折叠(collapsing margins)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS单位"><span class="nav-number">1.0.14.</span> <span class="nav-text">CSS单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transform变形"><span class="nav-number">1.0.15.</span> <span class="nav-text">transform变形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS预处理器"><span class="nav-number">1.0.16.</span> <span class="nav-text">CSS预处理器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-[object Object]"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YauCheun</span>
+
+  
+</div>
+
+
+   <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span> 
+
+<i class="fa fa-eye"></i>
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+ 
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共25.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+</body>
+</html>
